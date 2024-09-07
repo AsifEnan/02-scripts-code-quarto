@@ -2,30 +2,32 @@
 title: "Homework: Finding Your Way in R and Python"
 execute:
   error: true
-author: "Your Name"
+author: "Asif Enan"
+date: 07 September, 2024
 output: html_document
 ---
 
 Instructions: Once you have finished this assignment, render the document (Ctrl/Cmd-Shift-K or the Render button). Commit the qmd file and any other files you have changed to the repository and push your changes.
 
-In Canvas, submit a link to your github repository containing the updated files. 
+In Canvas, submit a link to your github repository containing the updated files.
 
-Note: Submitting your link in Canvas lets me know that you are ready for me to grade your homework. You can commit half-finished or not-working homework to GitHub, and it is good practice to commit frequently (at least at the end of each work session). 
+Note: Submitting your link in Canvas lets me know that you are ready for me to grade your homework. You can commit half-finished or not-working homework to GitHub, and it is good practice to commit frequently (at least at the end of each work session).
 
 # Modes of Execution
 
 Consider the 6 counting words examples in the [textbook module](https://srvanderplas.github.io/stat-computing-r-python/part-tools/04-scripts-notebooks.html#a-short-history-of-talking-to-computers) (they are in 3 separate 'your turn' sections). Look at the code, and then at the information provided for each example. What is different? What is the same? Write 2-3 sentences describing how script mode, interactive mode, and command-line mode differ in R and Python.
 
----
+------------------------------------------------------------------------
 
-Replace this line of text with your 2-3 sentences about script-mode, interactive mode, and command-line mode in R and Python
+Replace this line of text with your 2-3 sentences about script-mode, interactive mode, and command-line mode in R and Python:
 
----
+**Me: *Interactive mode*** is essentially running the codes on a line by line basis, it allows us to see which command is doing exactly what. We do this through the console. ***Script mode***, which was the 'source script' in R, runs the code all at once, which we did for the madlibs.py program. **Command-line mode** means we are running the code through the terminal.
 
+------------------------------------------------------------------------
 
 # Programming with Variables
 
-In this section, you'll demonstrate that you understand how to solve simple math problems using code. First, you'll want to define variables to represent the variables in the equation. Give the variables values that can be used to determine the value of the variable on the other side of the `=`. Then, write code to solve the equation for the value of the variable. 
+In this section, you'll demonstrate that you understand how to solve simple math problems using code. First, you'll want to define variables to represent the variables in the equation. Give the variables values that can be used to determine the value of the variable on the other side of the `=`. Then, write code to solve the equation for the value of the variable.
 
 ## Pythagorean Theorem in R
 
@@ -34,7 +36,22 @@ $$a^2 + b^2 = c^2$$
 Use the chunk below to define variables $a$, $b$, and $c$, where you define the values of $a$ and $b$, and $c$ is determined mathematically. You may need to find the square root function in R to make this work.
 
 ```{r pythagorean-theorem-r}
-# Your pythagorean theorem code goes here
+a<-3
+b<-4
+c<-sqrt(a^2 + b^2)
+
+print(c)
+```
+
+**Doing the same thing in Python**
+
+```{python pythagoras}
+import math
+a=3
+b=4
+c=math.sqrt(a**2 + b**2)
+
+print(c)
 
 ```
 
@@ -42,11 +59,39 @@ Use the chunk below to define variables $a$, $b$, and $c$, where you define the 
 
 $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
 
-Use the chunk below to define variables $a$, $b$, and $c$, and then define $x1$ and $x2$, the possible values for $x$. You may find it helpful to define a few additional variables, such as the value of the discriminant $\sqrt{b^2 - 4ac}$, to make it easier to calculate the results. 
+Use the chunk below to define variables $a$, $b$, and $c$, and then define $x1$ and $x2$, the possible values for $x$. You may find it helpful to define a few additional variables, such as the value of the discriminant $\sqrt{b^2 - 4ac}$, to make it easier to calculate the results.
 
 ```{python quad-formula-py}
-# Your quadratic formula code goes here
+import math
+a = 10
+b = 45
+c = 5
+discrim = math.sqrt(b**2 - 4*a*c)
 
+x1= (-b + discrim) / (2 * a)
+print(x1)
+
+x2  =  (-b - discrim) / (2 * a)
+print(x2)
+
+print(x1,x2)
+```
+
+**Doing the same thing in R**
+
+```{r quadratic}
+a <- 10
+b <- 45
+c <- 5
+discrim <- sqrt(b^2 - 4*a*c)
+
+x1 <- (-b + discrim) / (2 * a)
+print(x1)
+
+x2  <-  (-b - discrim) / (2 * a)
+print(x2)
+
+c(x1,x2)
 ```
 
 # Debugging practice
@@ -76,9 +121,20 @@ salary
 
 The problem with the data is:
 
-Here is how I solved the problem:
+Here is **how I solved** the problem:
 
 ```{r cleaning-the-data-r}
-# Your implementation code goes here
+library(tidyverse)
+library(ggrepel)
+
+library(ggplot2)
+ggplot(salary, aes(x = Hire.Year, y = parse_number(Salary), label = Name)) + 
+  geom_label_repel()
 
 ```
+
+I used the ggrepel package to make the labels all visible on the plot.
+
+**Interpretation:**
+
+A trend can be seen from the plot, where the earlier a character was hired the greater is the salary for that character. Example, Michael Scott was hired back in 1996 thus he has the highest salary whereas Pam Beesly was hired in 2002 and has the lowest salary among the four characters.
